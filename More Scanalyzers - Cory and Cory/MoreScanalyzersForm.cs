@@ -12,9 +12,16 @@ namespace More_Scanalyzers___Cory_and_Cory
 {
 	public partial class MoreScanalyzersForm : Form
 	{
+		// Form constructor
 		public MoreScanalyzersForm()
 		{
 			InitializeComponent();
+		}
+
+		// Public methods
+		public void youRuinedIt()
+		{
+			MessageBox.Show("(╯°□°）╯You ruined it!! You killed the magic!!");
 		}
 	}
 }

@@ -7,6 +7,9 @@
 //*******************************************************************************
 //TODO Possibly improve/ammend/change description
 
+//TODO CM - Work on form, input file, etc
+//TODO CP - Work on classes, program structure
+
 //++Objectives
 //TODO Create library (dll) of classes
 //TODO Instantiate objects of classes in an inheritance hierarchy
@@ -16,38 +19,39 @@
 //TODO Use buttons
 //TODO Use switch statement
 //TODO Use exception handling
+//TODO (╯°□°）╯You ruined it!! You killed the magic!!
 
 //TODO Three-level inheritance hierarchy
 //TODO 5 classes of Scanalyzers
 //TODO Use Analyzer as the abstract base class of the hierarchy
 //TODO Have PrintAnalyzer to find as many fingerprints (‘@’) as it can in a grid representing some object
 //TODO Second analyzer to collect DNA/hair/fiber/etc.samples in a grid representing a room.
-
-//You should come up with a third analyzer class that inherits from the second analyzer that is different enough from the other two, but has different member data / or overridden methods from the second analyzer.
-//Input for the crime will come from a file this time
-//Your instructor will give you code to read the data – you decide where you want to store it
+//TODO Create third scanalyzer class that inherits from second scanalyzer
+//	Must be different enough from the other two but has different member data or overridden methods from second scanalyzer
+//TODO Put the R/W files somewhere
 
 //+Your program will do the following:
-//Have the user select the input data file
-//Allow the user to select what type of evidence to collect(via buttons)
-//Show the result of the evidence collection
-//	Returns a string to displays the results of all fingerprints(‘@’) found in a label
-//	Returns a reference to a 2D array of picture boxes created dynamically at run time to displays an
-//	image of evidence collected(boundary lines could be visible or invisible?).  Find some.png files
-//Displays a message indicating the success of the evidence collection
-//Displays a messages on the number of fingerprints or samples collected
-//Show a message box in some exception handler if there is some problem with the input file
+//TODO Have the user select the input data file
+//TODO Allow the user to select what type of evidence to collect(via buttons)
+//TODO Show the result of the evidence collection
+//TODO	Returns a string to display the results of all fingerprints(‘@’) found in a label
+//TODO	Returns a reference to a 2D array of picture boxes created dynamically at run time to displays an
+//TODO	image of evidence collected(boundary lines could be visible or invisible?).  Find some.png files
+//TODO Display a message indicating the success of the evidence collection
+//TODO Display a message for the number of fingerprints or samples collected
+//TODO Show a message box in some exception handler if there is some problem with the input file
+//TODO (╯°□°）╯You ruined it!! You killed the magic!!
 
 //+INPUT:
 //Sample INPUT values are attached.  User should be able to
-//	enter the name of the file
-//	enter the data from the file and store in object’s class variables
+//TODO	enter the name of the file
+//TODO	enter the data from the file and store in object’s class variables
 
 //+OUTPUT:
-//Output is all done on a form. The form should display
-//	The filename(case number/name)
-//	Type of evidence currently being examined
-//	Results of evidence collection: Success, number collected, “image”
+//TODO Output is all done on a form. The form should display
+//TODO	The filename(case number/name)
+//TODO	Type of evidence currently being examined
+//TODO	Results of evidence collection: Success, number collected, “image”
 
 //+TURN IN all materials in a 9x12 envelope:
 //	Print out of documented Source code
