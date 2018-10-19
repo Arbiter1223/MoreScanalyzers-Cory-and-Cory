@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace More_Scanalyzers___Cory_and_Cory
 {
-    class BloodAnalyzer : Scanlyzer
+    class BloodAnalyzer : HairAnalyzer
     {
-        public BloodAnalyzer(int r, int c) : base(r, c)
+        public BloodAnalyzer(int r, int c, int numLocs, int[][] locs)
+            : base(r, c, numLocs, locs, '*')
         {
- 
         }
     }
 }
