@@ -121,6 +121,11 @@ namespace More_Scanalyzers___Cory_and_Cory
             return board;
         }
 
+        public int getGeusses()
+        {
+            return geusses;
+        }
+
         //resets Board
         private void resetBoard()
         {

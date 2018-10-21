@@ -11,6 +11,12 @@ namespace More_Scanalyzers___Cory_and_Cory
         public BloodAnalyzer(int r, int c, int numLocs, int[][] locs)
             : base(r, c, numLocs, locs, '*')
         {
+
+        }
+
+        public override string getType()
+        {
+            return "blood ";
         }
     }
-}
+} 
