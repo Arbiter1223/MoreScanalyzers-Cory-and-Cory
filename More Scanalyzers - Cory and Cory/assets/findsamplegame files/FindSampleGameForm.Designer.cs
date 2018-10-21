@@ -1,4 +1,4 @@
-﻿namespace FindSampleGame___Cory_Michener
+﻿namespace More_Scanalyzers___Cory_and_Cory
 {
 	partial class FindSampleGameForm
 	{
@@ -235,7 +235,7 @@
 			// 
 			// pictureBoxMagnifyingGlass
 			// 
-			this.pictureBoxMagnifyingGlass.Image = global::FindSampleGame___Cory_Michener.Properties.Resources.MagnifyingGlass;
+			this.pictureBoxMagnifyingGlass.Image = global::More_Scanalyzers___Cory_and_Cory.Properties.Resources.MagnifyingGlass;
 			this.pictureBoxMagnifyingGlass.Location = new System.Drawing.Point(442, 23);
 			this.pictureBoxMagnifyingGlass.Name = "pictureBoxMagnifyingGlass";
 			this.pictureBoxMagnifyingGlass.Size = new System.Drawing.Size(128, 128);

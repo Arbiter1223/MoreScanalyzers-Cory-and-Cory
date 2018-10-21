@@ -14,12 +14,12 @@
 //TODO Create library (dll) of classes
 //TODO Instantiate objects of classes in an inheritance hierarchy
 //TODO Use Polymorphism to output each object's attributes
-//TODO Use a label
-//TODO Use text boxes
-//TODO Use buttons
-//TODO Use switch statement
+//x TODO Use a label
+//x TODO Use text boxes
+//x TODO Use buttons
+//x Use switch statement
 //TODO Use exception handling
-//TODO (╯°□°）╯You ruined it!! You killed the magic!!
+//x TODO (╯°□°）╯You ruined it!! You killed the magic!!
 
 //TODO Three-level inheritance hierarchy
 //TODO 5 classes of Scanalyzers
@@ -28,10 +28,10 @@
 //TODO Second analyzer to collect DNA/hair/fiber/etc.samples in a grid representing a room.
 //TODO Create third scanalyzer class that inherits from second scanalyzer
 //	Must be different enough from the other two but has different member data or overridden methods from second scanalyzer
-//TODO Put the R/W files somewhere
+//x TODO Put the R/W files somewhere
 
 //+Your program will do the following:
-//TODO Have the user select the input data file
+//x Have the user select the input data file
 //TODO Allow the user to select what type of evidence to collect(via buttons)
 //TODO Show the result of the evidence collection
 //TODO	Returns a string to display the results of all fingerprints(‘@’) found in a label
@@ -42,14 +42,14 @@
 //TODO Show a message box in some exception handler if there is some problem with the input file
 //TODO (╯°□°）╯You ruined it!! You killed the magic!!
 
-//+INPUT:
-//Sample INPUT values are attached.  User should be able to
-//TODO	enter the name of the file
-//TODO	enter the data from the file and store in object’s class variables
+//x INPUT:
+//x Sample INPUT values are attached.  User should be able to
+//x	enter the name of the file
+//x	enter the data from the file and store in object’s class variables
 
 //+OUTPUT:
-//TODO Output is all done on a form. The form should display
-//TODO	The filename(case number/name)
+//x Output is all done on a form. The form should display
+//x	The filename(case number/name)
 //TODO	Type of evidence currently being examined
 //TODO	Results of evidence collection: Success, number collected, “image”
 
@@ -83,6 +83,11 @@ namespace More_Scanalyzers___Cory_and_Cory
 			MoreScanalyzersForm Scanalyzers = new MoreScanalyzersForm();
 
 			Application.Run(Scanalyzers);
+
+			MessageBox.Show("Program written by Cory and Cory.", "About program",
+				MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+			Application.Exit();
 		}
 	}
 }

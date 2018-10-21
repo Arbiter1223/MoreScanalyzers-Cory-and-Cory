@@ -8,7 +8,7 @@
 
 using System;
 
-namespace FindSampleGame___Cory_Michener
+namespace More_Scanalyzers___Cory_and_Cory
 {
 	static class ScanAnalyzer
 	{

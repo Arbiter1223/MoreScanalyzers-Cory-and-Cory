@@ -8,10 +8,12 @@
 
 // Magnifying glass clip art link: http://www.clker.com/clipart-2195.html
 
+
+
 using System;
 using System.Windows.Forms;
 
-namespace FindSampleGame___Cory_Michener
+namespace More_Scanalyzers___Cory_and_Cory
 {
 	public partial class FindSampleGameForm : Form
 	{
@@ -359,3 +361,4 @@ namespace FindSampleGame___Cory_Michener
 		}
 	}
 }
+
