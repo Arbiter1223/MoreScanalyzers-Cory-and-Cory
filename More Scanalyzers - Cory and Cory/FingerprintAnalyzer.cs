@@ -20,11 +20,26 @@ namespace More_Scanalyzers___Cory_and_Cory
         {
             if (game.changeBoard(r, c, EvidenceLocations[piecesFound][0],
                 EvidenceLocations[piecesFound][1]))
-                    incrementPiecesFound();
+                    piecesFound++;
             if (allFound())
                 return true;
             else
                 return false;
+        }
+
+        public override int getGeusses()
+        {
+            return game.getGeusses();
+        }
+
+        public override string getType()
+        {
+            return "fingerprint ";
+        }
+
+        public override char getBoardChar(int r, int c)
+        {
+            return game.getChar(r, c);
         }
 
         public override string boardToString()

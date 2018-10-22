@@ -32,10 +32,17 @@ namespace More_Scanalyzers___Cory_and_Cory
 
         public abstract string boardToString();
 
-        protected void incrementPiecesFound()
+        public abstract int getGeusses();
+
+        public abstract string getType();
+
+        public int getFound()
         {
-            piecesFound++;
+            return piecesFound;
         }
+
+        public abstract char getBoardChar(int r, int c);
+        
 
         protected bool allFound()
         {
