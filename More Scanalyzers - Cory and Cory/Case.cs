@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace More_Scanalyzers___Cory_and_Cory
 {
 
-    class Case
+    class Case : MoreScanalyzersForm
     {
         private int caseNum;
         private int samples;
@@ -64,7 +64,15 @@ namespace More_Scanalyzers___Cory_and_Cory
 
             //initializes gameboard labels
             labelGrid.Text = scaner.boardToString();
-            for(int i = 0; i < r; i++)
+            labelCaseNumber.Text = "Case Number: " + caseNum;
+            labelGridSize.Text = "Grid Size: " + r + " X " + c;
+            labelSampleType.Text = "Sample Type: " + scaner.getType();
+            labelNumberOfSamples.Text = "Number of Samples: " + samples;
+            labelGuesses.Text = "Geusses: " + 0;
+            labelLastGuess.Text = "Last Geuss: none";
+            buttonSubmitGuess.Enabled = true;
+
+            for (int i = 0; i < r; i++)
             {
                 labelGridRows.Text += i + '\n';
             }
@@ -85,8 +93,37 @@ namespace More_Scanalyzers___Cory_and_Cory
                     "", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
             }
+            int g = scaner.getGeusses();
             labelGrid.Text = scaner.boardToString();
+            labelLastGuess.Text = "Last Geuss: " + r + ", " + c;
+            labelGuesses.Text = "Geusses Left: " + scaner.getGeusses()
+                + " / " + 30;
+            switch(scaner.getBoardChar(r, c))
+            {
+                case '^':
+                    labelGuessResponse.Text = "Go Up...";
+                    break;
+                case 'v':
+                    labelGuessResponse.Text = "Go Down...";
+                    break;
+                case '>':
+                    labelGuessResponse.Text = "Go Right...";
+                    break;
+                case '<':
+                    labelGuessResponse.Text = "Go Left...";
+                    break;
 
+            }
+
+            if (outOfGeusses())
+            {
+                MessageBox.Show("You Lose! You found only "
+                    + scaner.getFound() + " " + scaner.getType() + "samples "
+                    + "out of " + samples,
+                    "", MessageBoxButtons.OK,
+                    MessageBoxIcon.Hand);
+                buttonSubmitGuess.Enabled = false;
+            }
         }
 
         public string boardToSting()
@@ -94,7 +131,7 @@ namespace More_Scanalyzers___Cory_and_Cory
             return scaner.boardToString();
         }
 
-        public bool outOfGeusses()
+        private bool outOfGeusses()
         {
             return scaner.getGeusses() > 29;
         }

@@ -37,6 +37,11 @@ namespace More_Scanalyzers___Cory_and_Cory
             return "fingerprint ";
         }
 
+        public override char getBoardChar(int r, int c)
+        {
+            return game.getChar(r, c);
+        }
+
         public override string boardToString()
         {
             return game.GameBoardToString();
