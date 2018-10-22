@@ -10,6 +10,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 //TODO Add links to images
+//	Scanner: https://vignette4.wikia.nocookie.net/subnautica/images/7/78/Scanner
+//		.png/revision/latest/scale-to-width-down/54?cb=20170502164029
+//	Blood Stain: http://weknowyourdreams.com/images/stains/stains-11.jpg
+//	DNA: https://cheshirelibraryscience.files.wordpress.com/2013/12/dna.jpg
+//	Fingerprint: http://www.knowmuhammad.org/files/029fe4745a2a7fc4c0b2e4511093b925.jpg
+//	Hair Follicle: http://www.hairsite.com/hair-loss/img/uploaded/200_image8.jpg
+//	Magnifying Glass: http://www.clker.com/clipart-2195.html
 //	Case File: http://quabbinvalleyparanormal.com/casefile07-004.JPG
 
 namespace More_Scanalyzers___Cory_and_Cory
@@ -88,13 +95,42 @@ namespace More_Scanalyzers___Cory_and_Cory
 						text[6].Substring(text[6].IndexOf(':') + 2)
 					};
 
+					// If all parameters are invalid,
+					// throw CorrupeCaseFile exception
+					if (!CheckParameterValidity(caseInfo))
+					{
+						//TODO throw CorrupeCaseFile exception
+					}
+					// Otherwise, proceed with file data
+					else
+					{
+						// Default choice
+						int scanner = 0;
 
-					//TODO If any parameters are invalid, throw CorruptCaseFile exception
+						// Let user choose scanalyzer
+						SelectScanalyzerForm selectScanalyzerForm =
+							new SelectScanalyzerForm();
+						selectScanalyzerForm.ShowDialog();
 
-					//TODO Let user choose scanalyzer
+						// Choice after form closes
+						scanner = selectScanalyzerForm.scanner;
 
+						// Instantiate the appropriate scanalyzer
+						switch (scanner)
+						{
+							case 0:
+								//TODO Instantiate Fingerprint scanalyzer
+								break;
+							case 1:
+								//TODO Instatiate Blood stain scanalyzer
+								break;
+							case 2:
+								//TODO Instantiate hair follicle scanalyzer
+								break;
+						}
 
-					DisplayGameScreen(caseInfo);
+						DisplayGameScreen(caseInfo);
+					}
 				}
 			}
 		}
@@ -133,11 +169,12 @@ namespace More_Scanalyzers___Cory_and_Cory
 			labelTitle.Location = new Point(72, 20);
 
 			// Move instructions below the title
-			labelInstructionsTitle.Location = new Point(174, 72);
-			labelInstructions.Location = new Point(82, 100);
+			labelInstructionsTitle.Location = new Point(174, 62);
+			labelInstructions.Location = new Point(82, 88);
 			labelInstructions.Text = "We have many unsolved cases that require" +
-				" investigation.\n" + "    Click the button below to select a " +
-				"case to investigate.";
+				" investigation.\n" + "    Click the left button to select a " +
+				"case to investigate.\n" + "          Click the right button to create " +
+				"a new case.";
 
 			// Show and move case file buttons
 			buttonOpenCaseFile.Show();
@@ -198,6 +235,52 @@ namespace More_Scanalyzers___Cory_and_Cory
 			labelGridRows.Show();
 			labelGridColumns.Show();
 
+		}
+		public bool CheckParameterValidity(string[] caseInfo)
+		{
+			// Case Number must be an integer
+			if (int.TryParse(caseInfo[0], out int w))
+			{
+				// Case number has to be in range of 0 - 9999
+				if (!((w >= 0) & (w <= 9999)))
+					return false;
+			}
+			else
+				return false;
+
+			// Row Number must be an integer
+			if (int.TryParse(caseInfo[1], out int x))
+			{
+				// Number of rows has to be in range of 2 - 10
+				if (!((x >= 2) & (x <= 10)))
+					return false;
+			}
+			else
+				return false;
+
+			// Column Number must be an integer
+			if (int.TryParse(caseInfo[2], out int y))
+			{
+				// Number of columns has to be in range of 2 - 10
+				if (!((y >= 2) & (y <= 10)))
+					return false;
+			}
+			else
+				return false;
+
+			// Sample Number must be an integer
+			if (int.TryParse(caseInfo[3], out int z))
+			{
+				// Number of samples has to be in range of 1 - 8
+				// Cannot be greater than grid size!
+				if (!((z >= 1) & (z <= 8) & (z <= (x * y))))
+					return false;
+			}
+			else
+				return false;
+
+			// If everything checks out, return true
+			return true;
 		}
 
 		// Event Handlers
