@@ -142,7 +142,10 @@ namespace More_Scanalyzers___Cory_and_Cory
 							samples, type);
 
 						// Set up initial game screen
-						DisplayGameScreen(caseInfo);
+						scene.DisplayGameScreen(caseInfo);
+
+						// Show initial game screen
+						scene.ShowDialog();
 					}
 				}
 			}

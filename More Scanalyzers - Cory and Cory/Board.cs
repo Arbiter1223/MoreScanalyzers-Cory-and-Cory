@@ -24,10 +24,10 @@ namespace More_Scanalyzers___Cory_and_Cory
             cols = c;
             evidenceType = type;
             geusses = 0;
-            GameBoard = new char[cols][];
-            for (int i = 0; i < cols; i++)
+            GameBoard = new char[rows][];
+            for (int i = 0; i < rows; i++)
             {
-                GameBoard[i] = new char[rows];
+                GameBoard[i] = new char[cols];
             }
             for (int i = 0; i < rows; i++)
             {
