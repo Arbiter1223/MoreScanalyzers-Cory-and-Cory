@@ -42,7 +42,7 @@ namespace More_Scanalyzers___Cory_and_Cory
         }
 
         public abstract char getBoardChar(int r, int c);
-        
+
 
         protected bool allFound()
         {

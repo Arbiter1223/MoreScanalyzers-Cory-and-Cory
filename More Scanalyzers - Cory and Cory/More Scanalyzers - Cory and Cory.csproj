@@ -46,12 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FindSampleGame.cs" />
-    <Compile Include="Assets\FindSampleGameForm.cs">
+    <Compile Include="assets\findsamplegame files\FindSampleGame.cs" />
+    <Compile Include="assets\findsamplegame files\FindSampleGameForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Assets\FindSampleGameForm.Designer.cs" />
-    <Compile Include="Assets\ScanAnalyzer.cs" />
+    <Compile Include="assets\findsamplegame files\FindSampleGameForm.Designer.cs" />
+    <Compile Include="assets\findsamplegame files\ScanAnalyzer.cs" />
+    <Compile Include="BloodAnalyzer.cs" />
+    <Compile Include="Board.cs" />
+    <Compile Include="Case.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateCaseFileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateCaseFileForm.Designer.cs">
+      <DependentUpon>CreateCaseFileForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FingerprintAnalyzer.cs" />
+    <Compile Include="HairAnalyzer.cs" />
     <Compile Include="MoreScanalyzersForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,8 +72,19 @@
       <DependentUpon>MoreScanalyzersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MoreScanalyzers.cs" />
+    <Compile Include="PrintAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Assets\FindSampleGameForm.resx" />
+    <Compile Include="Scanlyzer.cs" />
+    <Compile Include="SelectScanalyzerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectScanalyzerForm.Designer.cs">
+      <DependentUpon>SelectScanalyzerForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="assets\findsamplegame files\FindSampleGameForm.resx" />
+    <EmbeddedResource Include="CreateCaseFileForm.resx">
+      <DependentUpon>CreateCaseFileForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MoreScanalyzersForm.resx">
       <DependentUpon>MoreScanalyzersForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -74,6 +98,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SelectScanalyzerForm.resx">
+      <DependentUpon>SelectScanalyzerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -87,9 +114,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="SubnauticaScanner.png" />
+    <Folder Include="assets\input files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\findsamplegame files\MagnifyingGlass.ico" />
+    <Content Include="assets\findsamplegame files\MagnifyingGlass.png" />
+    <Content Include="assets\icons\casefile07-004.ico" />
+    <Content Include="assets\icons\SubnauticaScanner.ico" />
+    <Content Include="assets\images\bloodStain1.png" />
+    <Content Include="assets\images\casefile07-004.png" />
+    <Content Include="assets\images\dna1.png" />
+    <Content Include="assets\images\fingerprint1.png" />
+    <Content Include="assets\images\hairFollicle1.png" />
+    <None Include="assets\images\MagnifyingGlass.png" />
+    <Content Include="assets\images\SubnauticaScanner.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

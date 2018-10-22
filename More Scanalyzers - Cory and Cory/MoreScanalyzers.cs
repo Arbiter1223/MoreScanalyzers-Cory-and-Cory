@@ -5,7 +5,6 @@
 // MoreScanalyzers.cs
 // Holds Main function, starts program
 //*******************************************************************************
-//TODO Possibly improve/ammend/change description
 
 //TODO CM - Work on form, input file, etc
 //TODO CP - Work on classes, program structure
@@ -32,7 +31,7 @@
 
 //+Your program will do the following:
 //x Have the user select the input data file
-//TODO Allow the user to select what type of evidence to collect(via buttons)
+//x Allow the user to select what type of evidence to collect(via buttons)
 //TODO Show the result of the evidence collection
 //TODO	Returns a string to display the results of all fingerprints(‘@’) found in a label
 //TODO	Returns a reference to a 2D array of picture boxes created dynamically at run time to displays an

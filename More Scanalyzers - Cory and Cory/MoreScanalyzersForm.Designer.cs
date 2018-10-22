@@ -304,26 +304,26 @@
 		#endregion
 		private System.Windows.Forms.Button buttonOpenCaseFile;
 		private System.Windows.Forms.Label labelTitle;
-		private System.Windows.Forms.Label labelGrid;
-		private System.Windows.Forms.Label labelLastGuess;
 		private System.Windows.Forms.Label labelInstructionsTitle;
-		private System.Windows.Forms.Label labelGridRows;
-		private System.Windows.Forms.Label labelGridColumns;
-		private System.Windows.Forms.Label labelGuessResponse;
-		private System.Windows.Forms.Label labelGridSize;
 		private System.Windows.Forms.Label labelInstructions;
 		private System.Windows.Forms.TextBox textBoxGuessColumn;
 		private System.Windows.Forms.TextBox textBoxGuessRow;
 		private System.Windows.Forms.Label labelGuessColumn;
 		private System.Windows.Forms.Label labelGuessRow;
-		private System.Windows.Forms.Button buttonSubmitGuess;
-		private System.Windows.Forms.Label labelGuesses;
 		private System.Windows.Forms.PictureBox pictureBoxScanner1;
 		private System.Windows.Forms.PictureBox pictureBox1;
-		private System.Windows.Forms.Label labelSampleType;
-		private System.Windows.Forms.Label labelNumberOfSamples;
-		private System.Windows.Forms.Label labelCaseNumber;
 		private System.Windows.Forms.Button buttonCreateCaseFile;
+		protected System.Windows.Forms.Label labelGridColumns;
+		protected System.Windows.Forms.Label labelGrid;
+		protected System.Windows.Forms.Label labelLastGuess;
+		protected System.Windows.Forms.Label labelGridRows;
+		protected System.Windows.Forms.Label labelGuessResponse;
+		protected System.Windows.Forms.Label labelGridSize;
+		protected System.Windows.Forms.Label labelGuesses;
+		protected System.Windows.Forms.Label labelSampleType;
+		public System.Windows.Forms.Label labelNumberOfSamples;
+		protected System.Windows.Forms.Label labelCaseNumber;
+		protected System.Windows.Forms.Button buttonSubmitGuess;
 	}
 }
 

@@ -102,7 +102,7 @@ namespace More_Scanalyzers___Cory_and_Cory
                             GameBoard[r][c] = '>';
                     }
                 }
-
+                    
             }
             return false;
         }
@@ -112,7 +112,7 @@ namespace More_Scanalyzers___Cory_and_Cory
             string board = "";
             for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < cols; j++)
+                for(int j = 0; j < cols; j++)
                 {
                     board += GameBoard[i][j] += ' ';
                 }
@@ -121,17 +121,17 @@ namespace More_Scanalyzers___Cory_and_Cory
             return board;
         }
 
-        public int getGeusses()
-        {
-            return geusses;
-        }
+		public int getGeusses()
+		{
+			return geusses;
+		}
 
-       public char getChar(int r, int c){
-            return GameBoard[r][c];
-       }
+		public char getChar(int r, int c){
+			return GameBoard[r][c];
+		}
 
-        //resets Board
-        private void resetBoard()
+		//resets Board
+		private void resetBoard()
         {
             for (int r = 0; r < rows; r++)
             {

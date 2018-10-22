@@ -115,20 +115,33 @@ namespace More_Scanalyzers___Cory_and_Cory
 						// Choice after form closes
 						scanner = selectScanalyzerForm.scanner;
 
-						// Instantiate the appropriate scanalyzer
+						// Instantiate the appropriate scanalyzer type
+						char type;
 						switch (scanner)
 						{
-							case 0:
-								//TODO Instantiate Fingerprint scanalyzer
-								break;
 							case 1:
-								//TODO Instatiate Blood stain scanalyzer
+								type = '*';
 								break;
 							case 2:
-								//TODO Instantiate hair follicle scanalyzer
+								type = 'S';
+								break;
+							case 0:
+							default:
+								type = '@';
 								break;
 						}
 
+						// Convert case parameters to integers
+						int caseName = Int32.Parse(caseInfo[0]);
+						int rows = Int32.Parse(caseInfo[1]);
+						int cols = Int32.Parse(caseInfo[2]);
+						int samples = Int32.Parse(caseInfo[3]);
+
+						// Create new case with file parameters
+						Case scene = new Case(caseName, rows, cols,
+							samples, type);
+
+						// Set up initial game screen
 						DisplayGameScreen(caseInfo);
 					}
 				}
