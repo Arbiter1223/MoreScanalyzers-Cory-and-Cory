@@ -12,6 +12,8 @@ namespace More_Scanalyzers___Cory_and_Cory
     {
         private int caseNum;
         private int samples;
+        private int rows;
+        private int cols;
         private Scanlyzer scaner;
 
         public Case(int cNum, int r, int c, int s, char type){
@@ -22,6 +24,9 @@ namespace More_Scanalyzers___Cory_and_Cory
             int[][] S;
             S = new int[samples][];
 
+            rows = r;
+            cols = c;
+
             int tempR;
             int tempC;
 
@@ -30,8 +35,8 @@ namespace More_Scanalyzers___Cory_and_Cory
             {
                 S[i] = new int[2];
 
-                tempR = rand.Next();
-                tempC = rand.Next();
+                tempR = rand.Next(0, rows);
+                tempC = rand.Next(0, cols);
 
                 //loops through until unique coordinates are
                 //generated
@@ -39,8 +44,8 @@ namespace More_Scanalyzers___Cory_and_Cory
                 {
                     if (tempR == S[j][0] && tempC == S[j][1])
                     {
-                        tempR = rand.Next();
-                        tempC = rand.Next();
+                        tempR = rand.Next(0, rows);
+                        tempC = rand.Next(0, cols);
                         j = 0;
                     }
                 }
@@ -61,28 +66,9 @@ namespace More_Scanalyzers___Cory_and_Cory
                     scaner = new BloodAnalyzer(r, c, samples, S);
                     break;
             }
-
-            //initializes gameboard labels
-            labelGrid.Text = scaner.boardToString();
-            labelCaseNumber.Text = "Case Number: " + caseNum;
-            labelGridSize.Text = "Grid Size: " + r + " X " + c;
-            labelSampleType.Text = "Sample Type: " + scaner.getType();
-            labelNumberOfSamples.Text = "Number of Samples: " + samples;
-            labelGuesses.Text = "Geusses: " + 0;
-            labelLastGuess.Text = "Last Geuss: none";
-            buttonSubmitGuess.Enabled = true;
-
-            for (int i = 0; i < r; i++)
-            {
-                labelGridRows.Text += i + '\n';
-            }
-            for (int i = 0; i < c; i++)
-            {
-                labelGridColumns.Text += ' ' + i;
-            }
         }
 
-        public void makeGeuss(int r, int c)
+        public char makeGeuss(int r, int c)
         {
             //if the found all samples show congratulations box
             //and return
@@ -92,27 +78,6 @@ namespace More_Scanalyzers___Cory_and_Cory
                     + samples + " " + scaner.getType() + "samples",
                     "", MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation);
-            }
-            int g = scaner.getGeusses();
-            labelGrid.Text = scaner.boardToString();
-            labelLastGuess.Text = "Last Geuss: " + r + ", " + c;
-            labelGuesses.Text = "Geusses Left: " + scaner.getGeusses()
-                + " / " + 30;
-            switch(scaner.getBoardChar(r, c))
-            {
-                case '^':
-                    labelGuessResponse.Text = "Go Up...";
-                    break;
-                case 'v':
-                    labelGuessResponse.Text = "Go Down...";
-                    break;
-                case '>':
-                    labelGuessResponse.Text = "Go Right...";
-                    break;
-                case '<':
-                    labelGuessResponse.Text = "Go Left...";
-                    break;
-
             }
 
             if (outOfGeusses())
@@ -124,11 +89,38 @@ namespace More_Scanalyzers___Cory_and_Cory
                     MessageBoxIcon.Hand);
                 buttonSubmitGuess.Enabled = false;
             }
+
+            return scaner.getBoardChar(r, c);
         }
 
-        public string boardToSting()
+        public string boardToString()
         {
             return scaner.boardToString();
+        }
+
+        public int getCaseNum()
+        {
+            return caseNum;
+        }
+
+        public int getRows()
+        {
+            return rows;
+        }
+
+        public int getColumns()
+        {
+            return cols;
+        }
+
+        public string getScanerType()
+        {
+           return scaner.getType();
+        }
+
+        public int getGeusses()
+        {
+            return scaner.getGeusses();
         }
 
         private bool outOfGeusses()
