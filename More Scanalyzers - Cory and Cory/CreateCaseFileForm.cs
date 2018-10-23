@@ -27,6 +27,9 @@ namespace More_Scanalyzers___Cory_and_Cory
 			InitializeComponent();
 		}
 
+		// Random object
+		Random random = new Random();
+
 		// Public methods
 		public void SaveCaseFile()
 		{
@@ -189,6 +192,28 @@ namespace More_Scanalyzers___Cory_and_Cory
 			(object sender, EventArgs e)
 		{
 			CheckSampleNumber();
+		}
+
+		// Randomize buttons
+		private void buttonRandomizeCaseNumber_Click
+			(object sender, EventArgs e)
+		{
+			textBoxCaseNumber.Text = random.Next(0, 10000).ToString();
+		}
+		private void buttonRandomizeNumberOfRows_Click
+			(object sender, EventArgs e)
+		{
+			textBoxNumberOfRows.Text = random.Next(2, 11).ToString();
+		}
+		private void buttonRandomizeNumberOfColumns_Click
+			(object sender, EventArgs e)
+		{
+			textBoxNumberOfColumns.Text = random.Next(2, 11).ToString();
+		}
+		private void buttonRandomizeNumberOfSamples_Click
+			(object sender, EventArgs e)
+		{
+			textBoxNumberOfSamples.Text = random.Next(1, 9).ToString();
 		}
 	}
 }
