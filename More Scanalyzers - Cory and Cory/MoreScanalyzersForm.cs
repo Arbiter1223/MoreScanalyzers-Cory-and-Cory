@@ -35,6 +35,7 @@ namespace More_Scanalyzers___Cory_and_Cory
 	public partial class MoreScanalyzersForm : Form
 	{
         private Case scene;
+        private PictureBox[][] pics;
 
 		// Form constructor
 		public MoreScanalyzersForm()
@@ -291,11 +292,34 @@ namespace More_Scanalyzers___Cory_and_Cory
             labelLastGuess.Show();
 
 			// Render grid
-			labelGrid.Show();
 			labelGridRows.Show();
 			labelGridColumns.Show();
 
-		}
+            if(scene.getScanerType() == "blood ")
+            {
+                pics = new PictureBox[scene.getRows()][];
+                for(int r = 0; r < scene.getRows(); r++)
+                {
+                    pics[r] = new PictureBox[scene.getColumns()];
+                    for(int c = 0; c < scene.getColumns(); c++)
+                    {
+                        pics[r][c] = new PictureBox();
+                        pics[r][c].Location = new Point(194 + (c * 14), 197 + (r * 20));
+                        pics[r][c].Size = new Size(14, 14);
+                        pics[r][c].BackgroundImage = Properties.Resources.questionmark;
+                        pics[r][c].BackgroundImageLayout = ImageLayout.Stretch;
+                        pics[r][c].Anchor = AnchorStyles.Left;
+                        pics[r][c].Visible = true;
+                        this.Controls.Add(pics[r][c]);
+                    }
+                }
+            }
+            else
+            {
+                labelGrid.Show();
+            }
+
+        }
 		// Check validity of case file parameters
 		public bool CheckParameterValidity(string[] caseInfo)
 		{
@@ -375,29 +399,113 @@ namespace More_Scanalyzers___Cory_and_Cory
                     c < scene.getColumns() && c >= 0)
                 {
                     char ch = scene.makeGeuss(r, c);
-
-                    labelGrid.Text = scene.boardToString();
-                    labelLastGuess.Text = "Last Geuss: " + r + ", " + c;
-                    labelGuesses.Text = "Geusses Left: " + scene.getGeusses()
-                        + " / " + 30;
-
-                    switch (ch)
+                    
+                    if(scene.getScanerType() == "blood ")
                     {
-                        case '^':
-                            labelGuessResponse.Text = "Go Up...";
-                            break;
-                        case 'v':
-                            labelGuessResponse.Text = "Go Down...";
-                            break;
-                        case '>':
-                            labelGuessResponse.Text = "Go Right...";
-                            break;
-                        case '<':
-                            labelGuessResponse.Text = "Go Left...";
-                            break;
-                        default:
-                            labelGuessResponse.Text = "";
-                            break;
+                        switch (ch)
+                        {
+                            case '^':
+                                labelGuessResponse.Text = "Go Up...";
+                                pics[r][c].BackgroundImage = Properties.Resources.up_arrow;
+                                pics[r][c].Refresh();
+                                break;
+                            case 'v':
+                                labelGuessResponse.Text = "Go Down...";
+                                pics[r][c].BackgroundImage = Properties.Resources.down;
+                                pics[r][c].Refresh();
+                                break;
+                            case '>':
+                                labelGuessResponse.Text = "Go Right...";
+                                pics[r][c].BackgroundImage = Properties.Resources.right_arrow;
+                                pics[r][c].Refresh();
+                                break;
+                            case '<':
+                                labelGuessResponse.Text = "Go Left...";
+                                pics[r][c].BackgroundImage = Properties.Resources.left_arrow;
+                                pics[r][c].Refresh();
+                                break;
+                            case '!':
+                                pics[r][c].BackgroundImage = Properties.Resources.bloodStain1;
+                                pics[r][c].Refresh();
+                                for (r = 0; r < scene.getRows(); r++)
+                                {
+                                    for (c = 0; c < scene.getColumns(); c++)
+                                    {
+                                        if (!(scene.getScanerBoardChar(r, c) == '*'))
+                                        {
+                                            pics[r][c].BackgroundImage = Properties.Resources.questionmark;
+                                            pics[r][c].Refresh();
+                                        }
+                                    }
+                                }
+                                MessageBox.Show("Congratulation! You found all "
+                                    + scene.getSamples() + " " + scene.getScanerType() + "samples",
+                                    "", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Exclamation);
+                                labelGuessResponse.Text = "";
+                                break;
+                            default:
+                                pics[r][c].BackgroundImage = Properties.Resources.bloodStain1;
+                                pics[r][c].Refresh();
+                                for (r = 0; r < scene.getRows(); r++)
+                                {
+                                    for (c = 0; c < scene.getColumns(); c++)
+                                    {
+                                        if(!(scene.getScanerBoardChar(r, c) == '*'))
+                                        {
+                                            pics[r][c].BackgroundImage = Properties.Resources.questionmark;
+                                            pics[r][c].Refresh();
+                                            pics[r][c].Visible = true;
+                                        }
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        string board = scene.boardToString();
+
+                        labelGrid.Text = board;
+                        labelLastGuess.Text = "Last Geuss: " + r + ", " + c;
+                        labelGuesses.Text = "Geusses Left: " + scene.getGeusses()
+                            + " / " + 30;
+
+                        switch (ch)
+                        {
+                            case '^':
+                                labelGuessResponse.Text = "Go Up...";
+                                break;
+                            case 'v':
+                                labelGuessResponse.Text = "Go Down...";
+                                break;
+                            case '>':
+                                labelGuessResponse.Text = "Go Right...";
+                                break;
+                            case '<':
+                                labelGuessResponse.Text = "Go Left...";
+                                break;
+                            case '!':
+                                MessageBox.Show("Congratulation! You found all "
+                                    + scene.getSamples() + " " + scene.getScanerType() + "samples",
+                                    "", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Exclamation);
+                                labelGuessResponse.Text = "";
+                                break;
+                            default:
+
+                                break;
+                        }
+                    }
+
+                    if (scene.outOfGeusses())
+                    {
+                        MessageBox.Show("You Lose! You found only "
+                            + scene.getSamplesFound() + " " + scene.getScanerType() + "samples "
+                            + "out of " + scene.getSamples(),
+                            "", MessageBoxButtons.OK,
+                            MessageBoxIcon.Hand);
+                        buttonSubmitGuess.Enabled = false;
                     }
                 }
 
