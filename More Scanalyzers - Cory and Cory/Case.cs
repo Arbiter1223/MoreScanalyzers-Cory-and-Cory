@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace More_Scanalyzers___Cory_and_Cory
 {
 
-    class Case : MoreScanalyzersForm
+    class Case
     {
         private int caseNum;
         private int samples;
@@ -74,22 +74,8 @@ namespace More_Scanalyzers___Cory_and_Cory
             //and return
             if (scaner.processGeuss(r, c))
             {
-                MessageBox.Show("Congratulation! You found all "
-                    + samples + " " + scaner.getType() + "samples",
-                    "", MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+                return '!';
             }
-
-            if (outOfGeusses())
-            {
-                MessageBox.Show("You Lose! You found only "
-                    + scaner.getFound() + " " + scaner.getType() + "samples "
-                    + "out of " + samples,
-                    "", MessageBoxButtons.OK,
-                    MessageBoxIcon.Hand);
-                buttonSubmitGuess.Enabled = false;
-            }
-
             return scaner.getBoardChar(r, c);
         }
 
@@ -113,6 +99,16 @@ namespace More_Scanalyzers___Cory_and_Cory
             return cols;
         }
 
+        public int getSamples()
+        {
+            return samples;
+        }
+
+        public int getSamplesFound()
+        {
+            return scaner.getFound();
+        }
+
         public string getScanerType()
         {
            return scaner.getType();
@@ -123,7 +119,12 @@ namespace More_Scanalyzers___Cory_and_Cory
             return scaner.getGeusses();
         }
 
-        private bool outOfGeusses()
+        public char getScanerBoardChar(int r, int c)
+        {
+            return scaner.getBoardChar(r, c);
+        }
+
+        public bool outOfGeusses()
         {
             return scaner.getGeusses() > 29;
         }
