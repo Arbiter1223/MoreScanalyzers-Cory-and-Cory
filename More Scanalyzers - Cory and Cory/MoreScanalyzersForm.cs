@@ -153,9 +153,26 @@ namespace More_Scanalyzers___Cory_and_Cory
 					// Set up initial game screen
 					DisplayGameScreen(caseInfo);
 
-                    //initializes gameboard labels
-                    this.labelGrid.Text = scene.boardToString();
-                    this.labelCaseNumber.Text = "Case Number: " + scene.getCaseNum();
+					// Add any leading zeros to Case Number to make it four digits
+					string caseNum = scene.getCaseNum().ToString();
+					switch (caseNum.Length)
+					{
+						case 1:
+							caseNum = "000" + caseNum;
+							break;
+						case 2:
+							caseNum = "00" + caseNum;
+							break;
+						case 3:
+							caseNum = "0" + caseNum;
+							break;
+						default:
+							break;
+					}
+
+					//initializes gameboard labels
+					this.labelGrid.Text = scene.boardToString();
+                    this.labelCaseNumber.Text = "Case Number: " + caseNum;
                     this.labelGridSize.Text = "Grid Size: " + scene.getRows() + " X " + scene.getColumns();
                     this.labelSampleType.Text = "Sample Type: " + scene.getScanerType();
                     this.labelNumberOfSamples.Text = "Number of Samples: " + samples;

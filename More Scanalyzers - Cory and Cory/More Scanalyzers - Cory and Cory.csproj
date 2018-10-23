@@ -54,9 +54,7 @@
     <Compile Include="assets\findsamplegame files\ScanAnalyzer.cs" />
     <Compile Include="BloodAnalyzer.cs" />
     <Compile Include="Board.cs" />
-    <Compile Include="Case.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Case.cs" />
     <Compile Include="CorruptCaseFileException.cs" />
     <Compile Include="CreateCaseFileForm.cs">
       <SubType>Form</SubType>
@@ -129,6 +127,11 @@
     <Content Include="assets\images\dna1.png" />
     <Content Include="assets\images\fingerprint1.png" />
     <Content Include="assets\images\hairFollicle1.png" />
+    <Content Include="Resources\down.png" />
+    <Content Include="Resources\left_arrow.png" />
+    <Content Include="Resources\questionmark.png" />
+    <Content Include="Resources\right_arrow.png" />
+    <Content Include="Resources\up_arrow.png" />
     <None Include="assets\images\MagnifyingGlass.png" />
     <Content Include="assets\images\SubnauticaScanner.png" />
   </ItemGroup>
