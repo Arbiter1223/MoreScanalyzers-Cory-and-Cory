@@ -57,6 +57,7 @@
     <Compile Include="Case.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CorruptCaseFileException.cs" />
     <Compile Include="CreateCaseFileForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,6 +66,7 @@
     </Compile>
     <Compile Include="FingerprintAnalyzer.cs" />
     <Compile Include="HairAnalyzer.cs" />
+    <Compile Include="InvalidFileTypeException.cs" />
     <Compile Include="MoreScanalyzersForm.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -11,21 +11,21 @@
 
 //++Objectives
 //TODO Create library (dll) of classes
-//TODO Instantiate objects of classes in an inheritance hierarchy
-//TODO Use Polymorphism to output each object's attributes
+//x Instantiate objects of classes in an inheritance hierarchy
+//x Use Polymorphism to output each object's attributes
 //x TODO Use a label
 //x TODO Use text boxes
 //x TODO Use buttons
 //x Use switch statement
-//TODO Use exception handling
+//x Use exception handling
 //x TODO (╯°□°）╯You ruined it!! You killed the magic!!
 
-//TODO Three-level inheritance hierarchy
-//TODO 5 classes of Scanalyzers
-//TODO Use Analyzer as the abstract base class of the hierarchy
-//TODO Have PrintAnalyzer to find as many fingerprints (‘@’) as it can in a grid representing some object
-//TODO Second analyzer to collect DNA/hair/fiber/etc.samples in a grid representing a room.
-//TODO Create third scanalyzer class that inherits from second scanalyzer
+//x Three-level inheritance hierarchy
+//x 5 classes of Scanalyzers
+//x Use Analyzer as the abstract base class of the hierarchy
+//x Have PrintAnalyzer to find as many fingerprints (‘@’) as it can in a grid representing some object
+//x Second analyzer to collect DNA/hair/fiber/etc.samples in a grid representing a room.
+//x Create third scanalyzer class that inherits from second scanalyzer
 //	Must be different enough from the other two but has different member data or overridden methods from second scanalyzer
 //x TODO Put the R/W files somewhere
 
@@ -38,8 +38,8 @@
 //TODO	image of evidence collected(boundary lines could be visible or invisible?).  Find some.png files
 //TODO Display a message indicating the success of the evidence collection
 //TODO Display a message for the number of fingerprints or samples collected
-//TODO Show a message box in some exception handler if there is some problem with the input file
-//TODO (╯°□°）╯You ruined it!! You killed the magic!!
+//x Show a message box in some exception handler if there is some problem with the input file
+//x (╯°□°）╯You ruined it!! You killed the magic!!
 
 //x INPUT:
 //x Sample INPUT values are attached.  User should be able to
@@ -49,7 +49,7 @@
 //+OUTPUT:
 //x Output is all done on a form. The form should display
 //x	The filename(case number/name)
-//TODO	Type of evidence currently being examined
+//x	Type of evidence currently being examined
 //TODO	Results of evidence collection: Success, number collected, “image”
 
 //+TURN IN all materials in a 9x12 envelope:

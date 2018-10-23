@@ -1,4 +1,13 @@
-﻿using System;
+﻿//*******************************************************************************
+// Cory Michener and Cory Press
+// October 22, 2018
+// Program 5 - More Scanalyzers!
+// MoreScanalyzersForm.cs
+// Holds primary form where user can open or create case files
+//	and play the game
+//*******************************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,12 +18,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-//TODO Add links to images
 //	Scanner: https://vignette4.wikia.nocookie.net/subnautica/images/7/78/Scanner
 //		.png/revision/latest/scale-to-width-down/54?cb=20170502164029
 //	Blood Stain: http://weknowyourdreams.com/images/stains/stains-11.jpg
 //	DNA: https://cheshirelibraryscience.files.wordpress.com/2013/12/dna.jpg
-//	Fingerprint: http://www.knowmuhammad.org/files/029fe4745a2a7fc4c0b2e4511093b925.jpg
+//	Fingerprint: http://www.knowmuhammad.org/
+//		files/029fe4745a2a7fc4c0b2e4511093b925.jpg
 //	Hair Follicle: http://www.hairsite.com/hair-loss/img/uploaded/200_image8.jpg
 //	Magnifying Glass: http://www.clker.com/clipart-2195.html
 //	Case File: http://quabbinvalleyparanormal.com/casefile07-004.JPG
@@ -32,9 +41,9 @@ namespace More_Scanalyzers___Cory_and_Cory
 
 		// Public methods
 		// A comical method to let the user know they done goofed
-		public void YouRuinedIt()
+		static public string YouRuinedIt()
 		{
-			MessageBox.Show("(╯°□°）╯You ruined it!! You killed the magic!!");
+			return "(╯°□°）╯You ruined it!! You killed the magic!!";
 		}
 		// Open file dialog
 		public string OpenCaseFile()
@@ -60,32 +69,30 @@ namespace More_Scanalyzers___Cory_and_Cory
 			// Return the path of the file to check its validity
 			return fileName;
 		}
-
+		// Check case file, throw exception if needed
 		public void CheckCaseFile(string fileName)
 		{
 			// Only check file name if it exists
 			if (fileName != null)
 			{
-				// If file isn't the right file type, throw InvalidFileType exception
-				if (fileName.Substring(fileName.LastIndexOf('.')) != ".case")
+				try
 				{
-					//TODO Create InvalidFileType exception
-					MessageBox.Show("BAD! D:");
-				}
-				// Otherwise, check the validity of the file contents
-				else
-				{
+					// If file isn't the right file type,
+					// throw InvalidFileType exception
+					if (fileName.Substring(fileName.LastIndexOf('.')) != ".case")
+						throw new InvalidFileTypeException();
+
 					// Read file into string array
 					string[] text = File.ReadAllLines(fileName);
 
 					// Get file size
 					int size = text.Length;
 
-					//TODO If file isn't the correct length, throw CorruptCaseFile exception
+					// If file isn't the correct length,
+					// throw CorruptCaseFile exception
 					if (size != 7)
-					{
+						throw new CorruptCaseFileException();
 
-					}
 					// Otherwise, get parameters
 					string[] caseInfo =
 					{
@@ -95,58 +102,66 @@ namespace More_Scanalyzers___Cory_and_Cory
 						text[6].Substring(text[6].IndexOf(':') + 2)
 					};
 
-					// If all parameters are invalid,
+					// If any parameters are invalid,
 					// throw CorrupeCaseFile exception
 					if (!CheckParameterValidity(caseInfo))
-					{
-						//TODO throw CorrupeCaseFile exception
-					}
+						throw new CorruptCaseFileException();
+
 					// Otherwise, proceed with file data
-					else
+					// Default choice
+					int scanner = 0;
+
+					// Let user choose scanalyzer
+					SelectScanalyzerForm selectScanalyzerForm =
+						new SelectScanalyzerForm();
+					selectScanalyzerForm.ShowDialog();
+
+					// Choice after form closes
+					scanner = selectScanalyzerForm.scanner;
+
+					// Instantiate the appropriate scanalyzer type
+					char type;
+					switch (scanner)
 					{
-						// Default choice
-						int scanner = 0;
-
-						// Let user choose scanalyzer
-						SelectScanalyzerForm selectScanalyzerForm =
-							new SelectScanalyzerForm();
-						selectScanalyzerForm.ShowDialog();
-
-						// Choice after form closes
-						scanner = selectScanalyzerForm.scanner;
-
-						// Instantiate the appropriate scanalyzer type
-						char type;
-						switch (scanner)
-						{
-							case 1:
-								type = '*';
-								break;
-							case 2:
-								type = 'S';
-								break;
-							case 0:
-							default:
-								type = '@';
-								break;
-						}
-
-						// Convert case parameters to integers
-						int caseName = Int32.Parse(caseInfo[0]);
-						int rows = Int32.Parse(caseInfo[1]);
-						int cols = Int32.Parse(caseInfo[2]);
-						int samples = Int32.Parse(caseInfo[3]);
-
-						// Create new case with file parameters
-						Case scene = new Case(caseName, rows, cols,
-							samples, type);
-
-						// Set up initial game screen
-						scene.DisplayGameScreen(caseInfo);
-
-						// Show initial game screen
-						scene.ShowDialog();
+						case 1:
+							type = '*';
+							break;
+						case 2:
+							type = 'S';
+							break;
+						case 0:
+						default:
+							type = '@';
+							break;
 					}
+
+					// Convert case parameters to integers
+					int caseName = Int32.Parse(caseInfo[0]);
+					int rows = Int32.Parse(caseInfo[1]);
+					int cols = Int32.Parse(caseInfo[2]);
+					int samples = Int32.Parse(caseInfo[3]);
+
+					// Create new case with file parameters
+					Case scene = new Case(caseName, rows, cols,
+						samples, type);
+
+					// Set up initial game screen
+					DisplayGameScreen(caseInfo);
+				}
+
+				// If file is not a .case file, handle the exception
+				catch (InvalidFileTypeException error)
+				{
+					MessageBox.Show(error.Message, "ERROR: Invalid file type.",
+						MessageBoxButtons.OK, MessageBoxIcon.Error);
+				}
+
+				// If .case file is in incorrect format, handle the exception
+				catch (CorruptCaseFileException error)
+				{
+					MessageBox.Show(error.Message,
+						"ERROR: Case file is corrupted.",
+						MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
 			}
 		}
@@ -176,8 +191,9 @@ namespace More_Scanalyzers___Cory_and_Cory
 			textBoxGuessColumn.Hide();
 			buttonSubmitGuess.Hide();
 
-			// Resize form
+			// Resize and center form
 			this.Size = new Size(456, 240);
+			this.CenterToScreen();
 
 			// Move title
 			pictureBoxScanner1.Location = new Point(12, 12);
@@ -189,8 +205,8 @@ namespace More_Scanalyzers___Cory_and_Cory
 			labelInstructions.Location = new Point(82, 88);
 			labelInstructions.Text = "We have many unsolved cases that require" +
 				" investigation.\n" + "    Click the left button to select a " +
-				"case to investigate.\n" + "          Click the right button to create " +
-				"a new case.";
+				"case to investigate.\n" + "          Click the right button " +
+				"to create a new case.";
 
 			// Show and move case file buttons
 			buttonOpenCaseFile.Show();
@@ -201,8 +217,9 @@ namespace More_Scanalyzers___Cory_and_Cory
 		// Display the game screen after loading a valid case file
 		public void DisplayGameScreen(string[] caseInfo)
 		{
-			// Set form size
+			// Set form size and center
 			this.Size = new Size(600, 500);
+			this.CenterToScreen();
 
 			// Shift title
 			pictureBoxScanner1.Location = new Point(84, 12);
@@ -226,11 +243,9 @@ namespace More_Scanalyzers___Cory_and_Cory
 			// Update case information
 			labelCaseNumber.Text = $"Case Number {caseInfo[0]}";
 			labelGridSize.Text = $"Grid Size: {caseInfo[1]} x {caseInfo[2]}";
-			//TODO labelSampleType.Text = $"Sample Type: {sampleType}";
 			labelNumberOfSamples.Text = $"Number of Samples: {caseInfo[3]}";
 
 			// Show the guess GUI at the right of the screen
-			//TODO labelGuesses.Text = $"Guesses: {guesses}";
 			labelGuesses.Show();
 
 			// Show submit guess
@@ -252,6 +267,7 @@ namespace More_Scanalyzers___Cory_and_Cory
 			labelGridColumns.Show();
 
 		}
+		// Check validity of case file parameters
 		public bool CheckParameterValidity(string[] caseInfo)
 		{
 			// Case Number must be an integer
