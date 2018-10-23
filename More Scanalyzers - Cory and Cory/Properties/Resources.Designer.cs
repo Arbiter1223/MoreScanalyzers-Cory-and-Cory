@@ -119,5 +119,55 @@ namespace More_Scanalyzers___Cory_and_Cory.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-    }
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		internal static System.Drawing.Bitmap questionmark {
+			get {
+				object obj = ResourceManager.GetObject("questionmark", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		internal static System.Drawing.Bitmap up_arrow {
+			get {
+				object obj = ResourceManager.GetObject("up_arrow", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		internal static System.Drawing.Bitmap down {
+			get {
+				object obj = ResourceManager.GetObject("down", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		internal static System.Drawing.Bitmap right_arrow {
+			get {
+				object obj = ResourceManager.GetObject("right_arrow", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+
+		/// <summary>
+		///   Looks up a localized resource of type System.Drawing.Bitmap.
+		/// </summary>
+		internal static System.Drawing.Bitmap left_arrow {
+			get {
+				object obj = ResourceManager.GetObject("left_arrow", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+	}
 }

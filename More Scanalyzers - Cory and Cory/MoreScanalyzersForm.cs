@@ -184,14 +184,10 @@ namespace More_Scanalyzers___Cory_and_Cory
 
                     this.labelGridRows.Text = "";
                     for (int i = 0; i < scene.getRows(); i++)
-                    {
                         this.labelGridRows.Text += "" + i + '\n';
-                    }
                     this.labelGridColumns.Text = "";
                     for (int i = 0; i < scene.getColumns(); i++)
-                    {
                         this.labelGridColumns.Text += " " + i;
-                    }
                 }
 
 				// If file is not a .case file, handle the exception
@@ -228,6 +224,7 @@ namespace More_Scanalyzers___Cory_and_Cory
 			labelGuesses.Hide();
 			labelLastGuess.Hide();
 			labelGuessResponse.Hide();
+			buttonGiveUp.Hide();
 
 			// Hide submit guess
 			labelGuessRow.Hide();
@@ -292,6 +289,7 @@ namespace More_Scanalyzers___Cory_and_Cory
 
 			// Show the guess GUI at the right of the screen
 			labelGuesses.Show();
+			buttonGiveUp.Show();
 
 			// Show submit guess
 			labelGuessRow.Show();
@@ -332,9 +330,7 @@ namespace More_Scanalyzers___Cory_and_Cory
                 }
             }
             else
-            {
                 labelGrid.Show();
-            }
 
         }
 		// Check validity of case file parameters
@@ -383,6 +379,33 @@ namespace More_Scanalyzers___Cory_and_Cory
 
 			// If everything checks out, return true
 			return true;
+		}
+		// Get user's choice for if they want to play another game
+		public bool AnotherGame()
+		{
+			// Ask user if they would like to play again
+			var choice = MessageBox.Show("Would you like to play again?",
+				"Once more?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+			// If yes, return true
+			if (choice == DialogResult.Yes)
+				return true;
+			// If not, return false
+			else
+				return false;
+		}
+		// Display message box asking if user would like to play again
+		public void PlayAgain()
+		{
+			// Ask if user wants to play again
+			if (AnotherGame())
+			{
+				// If so, go back to start screen
+				DisplayStartScreen();
+			}
+			// Otherwise, close form, exit application
+			else
+				this.Close();
 		}
 
 		// Event Handlers
@@ -508,7 +531,8 @@ namespace More_Scanalyzers___Cory_and_Cory
                                     "", MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
                                 labelGuessResponse.Text = "";
-                                break;
+								PlayAgain();
+								break;
                             default:
 
                                 break;
@@ -523,6 +547,7 @@ namespace More_Scanalyzers___Cory_and_Cory
                             "", MessageBoxButtons.OK,
                             MessageBoxIcon.Hand);
                         buttonSubmitGuess.Enabled = false;
+						PlayAgain();
                     }
                 }
 
@@ -533,6 +558,21 @@ namespace More_Scanalyzers___Cory_and_Cory
                     MessageBoxIcon.Warning);
                 }
             }
+
+			// Reset text boxes after evaluating guess
+			textBoxGuessRow.Clear();
+			textBoxGuessColumn.Clear();
         }
-    }
+
+		private void buttonGiveUp_Click(object sender, EventArgs e)
+		{
+			// Ask user if they really want to quit
+			var choice = MessageBox.Show("Are you sure you want to quit?",
+				"Give up?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+			// If yes, return to start menu
+			if (choice == DialogResult.Yes)
+				DisplayStartScreen();
+		}
+	}
 }

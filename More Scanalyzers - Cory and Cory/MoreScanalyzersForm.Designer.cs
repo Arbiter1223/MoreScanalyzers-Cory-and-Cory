@@ -51,6 +51,7 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.pictureBoxScanner1 = new System.Windows.Forms.PictureBox();
 			this.buttonCreateCaseFile = new System.Windows.Forms.Button();
+			this.buttonGiveUp = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxScanner1)).BeginInit();
 			this.SuspendLayout();
@@ -193,6 +194,7 @@
 			this.buttonSubmitGuess.TabIndex = 31;
 			this.buttonSubmitGuess.Text = "Submit Guess";
 			this.buttonSubmitGuess.UseVisualStyleBackColor = true;
+			this.buttonSubmitGuess.Click += new System.EventHandler(this.buttonSubmitGuess_Click);
 			// 
 			// labelGuesses
 			// 
@@ -261,11 +263,22 @@
 			this.buttonCreateCaseFile.UseVisualStyleBackColor = true;
 			this.buttonCreateCaseFile.Click += new System.EventHandler(this.buttonCreateCaseFile_Click);
 			// 
+			// buttonGiveUp
+			// 
+			this.buttonGiveUp.Location = new System.Drawing.Point(429, 286);
+			this.buttonGiveUp.Name = "buttonGiveUp";
+			this.buttonGiveUp.Size = new System.Drawing.Size(100, 50);
+			this.buttonGiveUp.TabIndex = 54;
+			this.buttonGiveUp.Text = "Give up!";
+			this.buttonGiveUp.UseVisualStyleBackColor = true;
+			this.buttonGiveUp.Click += new System.EventHandler(this.buttonGiveUp_Click);
+			// 
 			// MoreScanalyzersForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(584, 461);
+			this.Controls.Add(this.buttonGiveUp);
 			this.Controls.Add(this.buttonCreateCaseFile);
 			this.Controls.Add(this.labelCaseNumber);
 			this.Controls.Add(this.labelNumberOfSamples);
@@ -324,6 +337,7 @@
 		public System.Windows.Forms.Label labelNumberOfSamples;
 		protected System.Windows.Forms.Label labelCaseNumber;
 		protected System.Windows.Forms.Button buttonSubmitGuess;
+		private System.Windows.Forms.Button buttonGiveUp;
 	}
 }
 
