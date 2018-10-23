@@ -30,8 +30,12 @@ using System.Windows.Forms;
 
 namespace More_Scanalyzers___Cory_and_Cory
 {
+
+
 	public partial class MoreScanalyzersForm : Form
 	{
+        private Case scene;
+
 		// Form constructor
 		public MoreScanalyzersForm()
 		{
@@ -142,12 +146,35 @@ namespace More_Scanalyzers___Cory_and_Cory
 					int samples = Int32.Parse(caseInfo[3]);
 
 					// Create new case with file parameters
-					Case scene = new Case(caseName, rows, cols,
+					scene = new Case(caseName, rows, cols,
 						samples, type);
 
 					// Set up initial game screen
 					DisplayGameScreen(caseInfo);
-				}
+
+                    //initializes gameboard labels
+                    this.labelGrid.Text = scene.boardToString();
+                    this.labelCaseNumber.Text = "Case Number: " + scene.getCaseNum();
+                    this.labelGridSize.Text = "Grid Size: " + scene.getRows() + " X " + scene.getColumns();
+                    this.labelSampleType.Text = "Sample Type: " + scene.getScanerType();
+                    this.labelNumberOfSamples.Text = "Number of Samples: " + samples;
+                    this.labelGuesses.Text = "Geusses: " + 0;
+                    this.labelLastGuess.Text = "Last Geuss: none";
+                    this.labelGuessResponse.Text = "";
+                    this.buttonSubmitGuess.Enabled = true;
+
+
+                    this.labelGridRows.Text = "";
+                    for (int i = 0; i < scene.getRows(); i++)
+                    {
+                        this.labelGridRows.Text += "" + i + '\n';
+                    }
+                    this.labelGridColumns.Text = "";
+                    for (int i = 0; i < scene.getColumns(); i++)
+                    {
+                        this.labelGridColumns.Text += " " + i;
+                    }
+                }
 
 				// If file is not a .case file, handle the exception
 				catch (InvalidFileTypeException error)
@@ -260,6 +287,8 @@ namespace More_Scanalyzers___Cory_and_Cory
 			labelGridSize.Show();
 			labelSampleType.Show();
 			labelNumberOfSamples.Show();
+            labelGuessResponse.Show();
+            labelLastGuess.Show();
 
 			// Render grid
 			labelGrid.Show();
@@ -329,5 +358,56 @@ namespace More_Scanalyzers___Cory_and_Cory
 			CreateCaseFileForm NewCaseFileForm = new CreateCaseFileForm();
 			NewCaseFileForm.ShowDialog();
 		}
-	}
+
+        private void buttonSubmitGuess_Click(object sender, EventArgs e)
+        {
+            int r, c;
+            if (!Int32.TryParse(textBoxGuessRow.Text, out r) ||
+            !Int32.TryParse(textBoxGuessColumn.Text, out c))
+            {
+                MessageBox.Show("You entered an Invalid Row or Column"
+                    + " number", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            else
+            {
+                if (r < scene.getRows() && r >= 0 &&
+                    c < scene.getColumns() && c >= 0)
+                {
+                    char ch = scene.makeGeuss(r, c);
+
+                    labelGrid.Text = scene.boardToString();
+                    labelLastGuess.Text = "Last Geuss: " + r + ", " + c;
+                    labelGuesses.Text = "Geusses Left: " + scene.getGeusses()
+                        + " / " + 30;
+
+                    switch (ch)
+                    {
+                        case '^':
+                            labelGuessResponse.Text = "Go Up...";
+                            break;
+                        case 'v':
+                            labelGuessResponse.Text = "Go Down...";
+                            break;
+                        case '>':
+                            labelGuessResponse.Text = "Go Right...";
+                            break;
+                        case '<':
+                            labelGuessResponse.Text = "Go Left...";
+                            break;
+                        default:
+                            labelGuessResponse.Text = "";
+                            break;
+                    }
+                }
+
+                else
+                {
+                    MessageBox.Show("You entered an Invalid Row or Column"
+                    + " number", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                }
+            }
+        }
+    }
 }

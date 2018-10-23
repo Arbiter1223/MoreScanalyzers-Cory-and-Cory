@@ -114,7 +114,7 @@ namespace More_Scanalyzers___Cory_and_Cory
             {
                 for(int j = 0; j < cols; j++)
                 {
-                    board += GameBoard[i][j] += ' ';
+                    board += "" + GameBoard[i][j] + ' ';
                 }
                 board += '\n';
             }
