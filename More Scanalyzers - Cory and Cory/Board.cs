@@ -64,7 +64,7 @@ namespace More_Scanalyzers___Cory_and_Cory
                     }
                     else if (c == evidenceC)
                     {
-                        GameBoard[r][c] = '<';
+                        GameBoard[r][c] = '^';
                     }
                     else
                     {
@@ -92,7 +92,7 @@ namespace More_Scanalyzers___Cory_and_Cory
                     }
                     else if (c == evidenceC)
                     {
-                        GameBoard[r][c] = '<';
+                        GameBoard[r][c] = 'v';
                     }
                     else
                     {

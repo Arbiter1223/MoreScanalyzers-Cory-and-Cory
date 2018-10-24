@@ -319,7 +319,7 @@ namespace More_Scanalyzers___Cory_and_Cory
                     for(int c = 0; c < scene.getColumns(); c++)
                     {
                         pics[r][c] = new PictureBox();
-                        pics[r][c].Location = new Point(194 + (c * 14), 197 + (r * 20));
+                        pics[r][c].Location = new Point(199 + (c * 15), 200 + (r * 20));
                         pics[r][c].Size = new Size(14, 14);
                         pics[r][c].BackgroundImage = Properties.Resources.questionmark;
                         pics[r][c].BackgroundImageLayout = ImageLayout.Stretch;
@@ -408,6 +408,17 @@ namespace More_Scanalyzers___Cory_and_Cory
 				this.Close();
 		}
 
+        public void hidePics()
+        {
+            for(int r = 0; r < scene.getRows(); r++)
+            {
+                for(int c = 0; c < scene.getColumns(); c++)
+                {
+                    pics[r][c].Visible = false;
+                }
+            }
+        }
+
 		// Event Handlers
 		private void buttonOpenCaseFile_Click(object sender, EventArgs e)
 		{
@@ -439,8 +450,11 @@ namespace More_Scanalyzers___Cory_and_Cory
                     c < scene.getColumns() && c >= 0)
                 {
                     char ch = scene.makeGeuss(r, c);
-                    
-                    if(scene.getScanerType() == "blood ")
+                    labelLastGuess.Text = "Last Geuss: " + r + ", " + c;
+                    labelGuesses.Text = "Geusses Left: " + scene.getGeusses()
+                        + " / " + 30;
+
+                    if (scene.getScanerType() == "blood ")
                     {
                         switch (ch)
                         {
@@ -483,6 +497,8 @@ namespace More_Scanalyzers___Cory_and_Cory
                                     "", MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
                                 labelGuessResponse.Text = "";
+                                hidePics();
+                                PlayAgain();
                                 break;
                             default:
                                 pics[r][c].BackgroundImage = Properties.Resources.bloodStain1;
@@ -507,9 +523,7 @@ namespace More_Scanalyzers___Cory_and_Cory
                         string board = scene.boardToString();
 
                         labelGrid.Text = board;
-                        labelLastGuess.Text = "Last Geuss: " + r + ", " + c;
-                        labelGuesses.Text = "Geusses Left: " + scene.getGeusses()
-                            + " / " + 30;
+                        
 
                         switch (ch)
                         {
@@ -572,7 +586,11 @@ namespace More_Scanalyzers___Cory_and_Cory
 
 			// If yes, return to start menu
 			if (choice == DialogResult.Yes)
-				DisplayStartScreen();
+            {
+                DisplayStartScreen();
+                hidePics();
+            }
+				
 		}
 	}
 }
