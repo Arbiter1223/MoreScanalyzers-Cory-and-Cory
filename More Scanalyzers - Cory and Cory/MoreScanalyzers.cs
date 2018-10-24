@@ -8,7 +8,6 @@
 
 using System;
 using System.Windows.Forms;
-using Scanalyzer; 
 
 namespace More_Scanalyzers___Cory_and_Cory
 {
