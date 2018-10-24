@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace More_Scanalyzers___Cory_and_Cory
 {
-    //Case
-    //Controls specific case and its scanlyzer
     class Case
     {
         private int caseNum;
         private int samples;
         private int rows;
         private int cols;
-        private Scanlyzer scaner;
+        private Scanlyzer scanner;
 
-        public Case(int cNum, int r, int c, int s, char type){
+        public Case(int cNum, int r, int c, int s, char type)
+		{
             Random rand = new Random();
             caseNum = cNum;
             samples = s;
@@ -31,7 +25,7 @@ namespace More_Scanalyzers___Cory_and_Cory
             int tempR;
             int tempC;
 
-            //creates random sample locations
+            // Creates random sample locations
             for(int i = 0; i < samples; i++)
             {
                 S[i] = new int[2];
@@ -39,8 +33,7 @@ namespace More_Scanalyzers___Cory_and_Cory
                 tempR = rand.Next(0, rows);
                 tempC = rand.Next(0, cols);
 
-                //loops through until unique coordinates are
-                //generated
+                // Loops through until unique coordinates are generated
                 for(int j = 0; j < i; j++)
                 {
                     if (tempR == S[j][0] && tempC == S[j][1])
@@ -54,92 +47,78 @@ namespace More_Scanalyzers___Cory_and_Cory
                 S[i][1] = tempC;
             }
 
-            //creates new scanalyzer depending on type
+            // Creates new scanalyzer depending on type
             switch (type)
             {
                 case '@':
-                    scaner = new FingerprintAnalyzer(r, c, samples, S);
+                    scanner = new FingerprintAnalyzer(r, c, samples, S);
                     break;
                 case 'S':
-                    scaner = new HairAnalyzer(r, c, samples, S);
+                    scanner = new HairAnalyzer(r, c, samples, S);
                     break;
                 case '*':
-                    scaner = new BloodAnalyzer(r, c, samples, S);
+                    scanner = new BloodAnalyzer(r, c, samples, S);
                     break;
             }
         }
 
-        //processes guess made by user
-        public char makeGeuss(int r, int c)
+        public char makeGuess(int r, int c)
         {
-            //if the found all samples show congratulations box
-            //and return
-            if (scaner.processGeuss(r, c))
-            {
+            // If the found all samples show congratulations box
+            // and return
+            if (scanner.processGuess(r, c))
                 return '!';
-            }
-            return scaner.getBoardChar(r, c);
+            return scanner.getBoardChar(r, c);
         }
 
-        //returns board as a string
         public string boardToString()
         {
-            return scaner.boardToString();
+            return scanner.boardToString();
         }
 
-        //returns case number
         public int getCaseNum()
         {
             return caseNum;
         }
 
-        //returns number of row of the board
         public int getRows()
         {
             return rows;
         }
 
-        //returns number of columns of the board
         public int getColumns()
         {
             return cols;
         }
 
-        //returns total samples in case
         public int getSamples()
         {
             return samples;
         }
 
-        //returns samples found
         public int getSamplesFound()
         {
-            return scaner.getFound();
+            return scanner.getFound();
         }
 
-        //return what type of scaner the case is
         public string getScanerType()
         {
-           return scaner.getType();
+           return scanner.getType();
         }
 
-        //returns geusses made on the case so far
-        public int getGeusses()
+        public int getGuesses()
         {
-            return scaner.getGeusses();
+            return scanner.getGuesses();
         }
 
-        //return specific char from board
         public char getScanerBoardChar(int r, int c)
         {
-            return scaner.getBoardChar(r, c);
+            return scanner.getBoardChar(r, c);
         }
 
-        //retruns true if user is out of geusses
-        public bool outOfGeusses()
+        public bool outOfGuesses()
         {
-            return scaner.getGeusses() > 29;
+            return scanner.getGuesses() > 29;
         }
-
     }
 }

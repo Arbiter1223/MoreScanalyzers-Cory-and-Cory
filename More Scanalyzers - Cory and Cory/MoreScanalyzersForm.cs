@@ -8,15 +8,10 @@
 //*******************************************************************************
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Scanalyzer;
 
 //	Scanner: https://vignette4.wikia.nocookie.net/subnautica/images/7/78/Scanner
 //		.png/revision/latest/scale-to-width-down/54?cb=20170502164029
@@ -30,8 +25,6 @@ using System.Windows.Forms;
 
 namespace More_Scanalyzers___Cory_and_Cory
 {
-
-
 	public partial class MoreScanalyzersForm : Form
 	{
         private Case scene;
@@ -60,9 +53,11 @@ namespace More_Scanalyzers___Cory_and_Cory
 			using (OpenFileDialog openFileDialog1 = new OpenFileDialog())
 			{
 				// Initial settings
-				openFileDialog1.InitialDirectory = Directory.GetCurrentDirectory()
+				openFileDialog1.InitialDirectory = Directory
+					.GetCurrentDirectory()
 					.Replace("bin\\Debug", "assets\\input files");
-				openFileDialog1.Filter = "Case files (*.case)|*.case|All files (*.*)|*.*";
+				openFileDialog1.Filter =
+					"Case files (*.case)|*.case|All files (*.*)|*.*";
 				openFileDialog1.FilterIndex = 0;
 				openFileDialog1.RestoreDirectory = true;
 
@@ -153,7 +148,8 @@ namespace More_Scanalyzers___Cory_and_Cory
 					// Set up initial game screen
 					DisplayGameScreen(caseInfo);
 
-					// Add any leading zeros to Case Number to make it four digits
+					// Add any leading zeros to Case Number
+					// to make it four digits
 					string caseNum = scene.getCaseNum().ToString();
 					switch (caseNum.Length)
 					{
@@ -170,17 +166,19 @@ namespace More_Scanalyzers___Cory_and_Cory
 							break;
 					}
 
-					//initializes gameboard labels
+					// Initializes gameboard labels
 					this.labelGrid.Text = scene.boardToString();
                     this.labelCaseNumber.Text = "Case Number: " + caseNum;
-                    this.labelGridSize.Text = "Grid Size: " + scene.getRows() + " X " + scene.getColumns();
-                    this.labelSampleType.Text = "Sample Type: " + scene.getScanerType();
-                    this.labelNumberOfSamples.Text = "Number of Samples: " + samples;
-                    this.labelGuesses.Text = "Geusses: " + 0;
-                    this.labelLastGuess.Text = "Last Geuss: none";
+                    this.labelGridSize.Text = "Grid Size: " + scene.getRows() +
+						" X " + scene.getColumns();
+                    this.labelSampleType.Text = "Sample Type: " +
+						scene.getScanerType();
+                    this.labelNumberOfSamples.Text = "Number of Samples: " +
+						samples;
+                    this.labelGuesses.Text = "Guesses: " + 0;
+                    this.labelLastGuess.Text = "Last Guess: none";
                     this.labelGuessResponse.Text = "";
                     this.buttonSubmitGuess.Enabled = true;
-
 
                     this.labelGridRows.Text = "";
                     for (int i = 0; i < scene.getRows(); i++)
@@ -319,9 +317,11 @@ namespace More_Scanalyzers___Cory_and_Cory
                     for(int c = 0; c < scene.getColumns(); c++)
                     {
                         pics[r][c] = new PictureBox();
-                        pics[r][c].Location = new Point(199 + (c * 15), 200 + (r * 20));
+                        pics[r][c].Location = new Point
+							(199 + (c * 20), 198 + (r * 18));
                         pics[r][c].Size = new Size(14, 14);
-                        pics[r][c].BackgroundImage = Properties.Resources.questionmark;
+                        pics[r][c].BackgroundImage = Properties
+							.Resources.questionmark;
                         pics[r][c].BackgroundImageLayout = ImageLayout.Stretch;
                         pics[r][c].Anchor = AnchorStyles.Left;
                         pics[r][c].Visible = true;
@@ -331,7 +331,6 @@ namespace More_Scanalyzers___Cory_and_Cory
             }
             else
                 labelGrid.Show();
-
         }
 		// Check validity of case file parameters
 		public bool CheckParameterValidity(string[] caseInfo)
@@ -399,10 +398,7 @@ namespace More_Scanalyzers___Cory_and_Cory
 		{
 			// Ask if user wants to play again
 			if (AnotherGame())
-			{
-				// If so, go back to start screen
-				DisplayStartScreen();
-			}
+				DisplayStartScreen();	// If so, go back to start screen
 			// Otherwise, close form, exit application
 			else
 				this.Close();
@@ -410,13 +406,15 @@ namespace More_Scanalyzers___Cory_and_Cory
 
         public void hidePics()
         {
-            for(int r = 0; r < scene.getRows(); r++)
-            {
-                for(int c = 0; c < scene.getColumns(); c++)
-                {
-                    pics[r][c].Visible = false;
-                }
-            }
+			// Only hide images if using the blood scanalyzer
+			if (scene.getScanerType() == "blood ")
+			{
+				for (int r = 0; r < scene.getRows(); r++)
+				{
+					for (int c = 0; c < scene.getColumns(); c++)
+						pics[r][c].Visible = false;
+				}
+			}
         }
 
 		// Event Handlers
@@ -449,9 +447,9 @@ namespace More_Scanalyzers___Cory_and_Cory
                 if (r < scene.getRows() && r >= 0 &&
                     c < scene.getColumns() && c >= 0)
                 {
-                    char ch = scene.makeGeuss(r, c);
-                    labelLastGuess.Text = "Last Geuss: " + r + ", " + c;
-                    labelGuesses.Text = "Geusses Left: " + scene.getGeusses()
+                    char ch = scene.makeGuess(r, c);
+                    labelLastGuess.Text = "Last Guess: " + r + ", " + c;
+                    labelGuesses.Text = "Guesses Left: " + scene.getGuesses()
                         + " / " + 30;
 
                     if (scene.getScanerType() == "blood ")
@@ -460,40 +458,49 @@ namespace More_Scanalyzers___Cory_and_Cory
                         {
                             case '^':
                                 labelGuessResponse.Text = "Go Up...";
-                                pics[r][c].BackgroundImage = Properties.Resources.up_arrow;
+                                pics[r][c].BackgroundImage = Properties
+									.Resources.up_arrow;
                                 pics[r][c].Refresh();
                                 break;
                             case 'v':
                                 labelGuessResponse.Text = "Go Down...";
-                                pics[r][c].BackgroundImage = Properties.Resources.down;
+                                pics[r][c].BackgroundImage = Properties
+									.Resources.down;
                                 pics[r][c].Refresh();
                                 break;
                             case '>':
                                 labelGuessResponse.Text = "Go Right...";
-                                pics[r][c].BackgroundImage = Properties.Resources.right_arrow;
+                                pics[r][c].BackgroundImage = Properties
+									.Resources.right_arrow;
                                 pics[r][c].Refresh();
                                 break;
                             case '<':
                                 labelGuessResponse.Text = "Go Left...";
-                                pics[r][c].BackgroundImage = Properties.Resources.left_arrow;
+                                pics[r][c].BackgroundImage = Properties
+									.Resources.left_arrow;
                                 pics[r][c].Refresh();
                                 break;
                             case '!':
-                                pics[r][c].BackgroundImage = Properties.Resources.bloodStain1;
+                                pics[r][c].BackgroundImage = Properties
+									.Resources.bloodStain1;
                                 pics[r][c].Refresh();
                                 for (r = 0; r < scene.getRows(); r++)
                                 {
                                     for (c = 0; c < scene.getColumns(); c++)
                                     {
-                                        if (!(scene.getScanerBoardChar(r, c) == '*'))
+                                        if (!(scene.getScanerBoardChar
+											(r, c) == '*'))
                                         {
-                                            pics[r][c].BackgroundImage = Properties.Resources.questionmark;
+                                            pics[r][c].BackgroundImage =
+												Properties.Resources
+												.questionmark;
                                             pics[r][c].Refresh();
                                         }
                                     }
                                 }
-                                MessageBox.Show("Congratulation! You found all "
-                                    + scene.getSamples() + " " + scene.getScanerType() + "samples",
+                                MessageBox.Show("Congratulations! You found all "
+                                    + scene.getSamples() + " " +
+									scene.getScanerType() + "sample(s).",
                                     "", MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
                                 labelGuessResponse.Text = "";
@@ -501,15 +508,19 @@ namespace More_Scanalyzers___Cory_and_Cory
                                 PlayAgain();
                                 break;
                             default:
-                                pics[r][c].BackgroundImage = Properties.Resources.bloodStain1;
+                                pics[r][c].BackgroundImage = Properties
+									.Resources.bloodStain1;
                                 pics[r][c].Refresh();
                                 for (r = 0; r < scene.getRows(); r++)
                                 {
                                     for (c = 0; c < scene.getColumns(); c++)
                                     {
-                                        if(!(scene.getScanerBoardChar(r, c) == '*'))
+                                        if(!(scene.getScanerBoardChar
+											(r, c) == '*'))
                                         {
-                                            pics[r][c].BackgroundImage = Properties.Resources.questionmark;
+                                            pics[r][c].BackgroundImage =
+												Properties.Resources
+												.questionmark;
                                             pics[r][c].Refresh();
                                             pics[r][c].Visible = true;
                                         }
@@ -523,7 +534,6 @@ namespace More_Scanalyzers___Cory_and_Cory
                         string board = scene.boardToString();
 
                         labelGrid.Text = board;
-                        
 
                         switch (ch)
                         {
@@ -541,22 +551,23 @@ namespace More_Scanalyzers___Cory_and_Cory
                                 break;
                             case '!':
                                 MessageBox.Show("Congratulation! You found all "
-                                    + scene.getSamples() + " " + scene.getScanerType() + "samples",
+                                    + scene.getSamples() + " " +
+									scene.getScanerType() + "samples",
                                     "", MessageBoxButtons.OK,
                                     MessageBoxIcon.Exclamation);
                                 labelGuessResponse.Text = "";
 								PlayAgain();
 								break;
                             default:
-
                                 break;
                         }
                     }
 
-                    if (scene.outOfGeusses())
+                    if (scene.outOfGuesses())
                     {
                         MessageBox.Show("You Lose! You found only "
-                            + scene.getSamplesFound() + " " + scene.getScanerType() + "samples "
+                            + scene.getSamplesFound() + " " +
+							scene.getScanerType() + "samples "
                             + "out of " + scene.getSamples(),
                             "", MessageBoxButtons.OK,
                             MessageBoxIcon.Hand);
@@ -590,7 +601,6 @@ namespace More_Scanalyzers___Cory_and_Cory
                 DisplayStartScreen();
                 hidePics();
             }
-				
 		}
 	}
 }

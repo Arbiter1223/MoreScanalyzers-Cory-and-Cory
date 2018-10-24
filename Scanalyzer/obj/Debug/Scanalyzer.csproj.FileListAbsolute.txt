@@ -1,0 +1,6 @@
+C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\Scanalyzer\bin\Debug\Scanalyzer.dll
+C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\Scanalyzer\bin\Debug\Scanalyzer.pdb
+C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\Scanalyzer\obj\Debug\Scanalyzer.csprojAssemblyReference.cache
+C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\Scanalyzer\obj\Debug\Scanalyzer.csproj.CoreCompileInputs.cache
+C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\Scanalyzer\obj\Debug\Scanalyzer.dll
+C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\Scanalyzer\obj\Debug\Scanalyzer.pdb

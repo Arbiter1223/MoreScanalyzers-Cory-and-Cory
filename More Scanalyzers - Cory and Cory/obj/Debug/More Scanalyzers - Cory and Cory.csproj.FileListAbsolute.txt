@@ -1,5 +1,4 @@
 C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\More Scanalyzers - Cory and Cory\obj\Debug\More Scanalyzers - Cory and Cory.csprojAssemblyReference.cache
-C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\More Scanalyzers - Cory and Cory\obj\Debug\More_Scanalyzers___Cory_and_Cory.assets.findsamplegame_files.FindSampleGameForm.resources
 C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\More Scanalyzers - Cory and Cory\obj\Debug\More_Scanalyzers___Cory_and_Cory.CreateCaseFileForm.resources
 C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\More Scanalyzers - Cory and Cory\obj\Debug\More_Scanalyzers___Cory_and_Cory.MoreScanalyzersForm.resources
 C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\More Scanalyzers - Cory and Cory\obj\Debug\More_Scanalyzers___Cory_and_Cory.Properties.Resources.resources
@@ -11,3 +10,6 @@ C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and
 C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\More Scanalyzers - Cory and Cory\bin\Debug\More Scanalyzers - Cory and Cory.pdb
 C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\More Scanalyzers - Cory and Cory\obj\Debug\More Scanalyzers - Cory and Cory.exe
 C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\More Scanalyzers - Cory and Cory\obj\Debug\More Scanalyzers - Cory and Cory.pdb
+C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\More Scanalyzers - Cory and Cory\bin\Debug\Scanalyzer.dll
+C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\More Scanalyzers - Cory and Cory\bin\Debug\Scanalyzer.pdb
+C:\Users\Arbit\Documents\Visual Studio 2017\Projects\More Scanalyzers - Cory and Cory\More Scanalyzers - Cory and Cory\obj\Debug\More Scanalyzers - Cory and Cory.csproj.CopyComplete

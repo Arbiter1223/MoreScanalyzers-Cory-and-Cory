@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace More_Scanalyzers___Cory_and_Cory
 {
-    //PrintAnalyzer - Cory Press
-    //Used in Scanlyzer classes to print out the gameboard 
-    //and keep track of the players view of the board
+    // PrintAnalyzer - Cory Press
+    // Used in Scanlyzer classes to print out the gameboard 
+    // and keep track of the players view of the board
     class PrintAnalyzer
     {
-        private char[][] GameBoard;//board as viewed by player
-        private int rows;//num rows in gameboard
-        private int cols;//num columns in gameboard
-        private char evidenceType;//char representing evidence type
-                                  //IE fingerprint = '@'
-        private int geusses;//geuses made by player
+        private char[][] GameBoard;	// Board as viewed by player
+        private int rows;	// Num rows in gameboard
+        private int cols;	// Num columns in gameboard
+        private char evidenceType;	// Char representing evidence type
+									// IE fingerprint = '@'
+        private int guesses;	// Gueses made by player
 
         public PrintAnalyzer(int r, int c, char type)
         {
@@ -25,9 +21,7 @@ namespace More_Scanalyzers___Cory_and_Cory
             evidenceType = type;
             GameBoard = new char[cols][];
             for (int i = 0; i < cols; i++)
-            {
                 GameBoard[i] = new char[rows];
-            }
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < cols; j++)
@@ -35,7 +29,7 @@ namespace More_Scanalyzers___Cory_and_Cory
             }
         }
 
-        //Processes gameboard after a geuss is made
+        // Processes gameboard after a guess is made
         public void changeBoard(int r, int c, int evidenceR, int evidenceC)
         {
             if (r == evidenceR && c == evidenceC)
@@ -45,11 +39,9 @@ namespace More_Scanalyzers___Cory_and_Cory
             }
             else
             {
-                bool pointHoriz = true;//if both row and col are wrong
-                if (geusses % 2 == 1)  //will point in direction depending
-                {                      //on number of geusses made 
-                    pointHoriz = false;
-                }
+                bool pointHoriz = true;	// If both row and col are wrong
+                if (guesses % 2 == 1)	// will point in direction depending
+                    pointHoriz = false; // on number of guesses made 
 
                 if (r > evidenceR)
                 {
@@ -61,9 +53,7 @@ namespace More_Scanalyzers___Cory_and_Cory
                             GameBoard[r][c] = '<';
                     }
                     else if (c == evidenceC)
-                    {
                         GameBoard[r][c] = '<';
-                    }
                     else
                     {
                         if (pointHoriz)
@@ -89,9 +79,7 @@ namespace More_Scanalyzers___Cory_and_Cory
                             GameBoard[r][c] = '<';
                     }
                     else if (c == evidenceC)
-                    {
                         GameBoard[r][c] = '<';
-                    }
                     else
                     {
                         if (pointHoriz)
@@ -100,7 +88,6 @@ namespace More_Scanalyzers___Cory_and_Cory
                             GameBoard[r][c] = '>';
                     }
                 }
-                    
             }
         }
 
@@ -113,18 +100,13 @@ namespace More_Scanalyzers___Cory_and_Cory
                     board += " ";
                 board += "         ";
                 for (int i = 10; i <= cols; i++)
-                {
                     board += i / 10;
-                }
                 board += "\n  ";
                 if (rows > 9)
                     board += " ";
-
             }
             for (int i = 1; i <= cols; i++)
-            {
                 board += i % 10;
-            }
             board += "\n";
             for (int r = 0; r < rows; r++)
             {
@@ -132,15 +114,13 @@ namespace More_Scanalyzers___Cory_and_Cory
                 if (r < 9 && rows > 9)
                     board += " ";
                 for (int c = 0; c < cols; c++)
-                {
                     board += GameBoard[r][c];
-                }
                 board += "\n";
             }
             return board;
         }
 
-        //resets Board
+        // Resets board
         private void resetBoard()
         {
             for (int r = 0; r < rows; r++)
@@ -150,7 +130,6 @@ namespace More_Scanalyzers___Cory_and_Cory
                     if (GameBoard[r][c] != evidenceType)
                         GameBoard[r][c] = '~';
                 }
-                    
             }
         }
     }

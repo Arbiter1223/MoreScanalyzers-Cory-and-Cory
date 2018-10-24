@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>SubnauticaScanner.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,15 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="assets\findsamplegame files\FindSampleGame.cs" />
-    <Compile Include="assets\findsamplegame files\FindSampleGameForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="assets\findsamplegame files\FindSampleGameForm.Designer.cs" />
-    <Compile Include="assets\findsamplegame files\ScanAnalyzer.cs" />
-    <Compile Include="BloodAnalyzer.cs" />
-    <Compile Include="Board.cs" />
-    <Compile Include="Case.cs" />
     <Compile Include="CorruptCaseFileException.cs" />
     <Compile Include="CreateCaseFileForm.cs">
       <SubType>Form</SubType>
@@ -62,8 +56,6 @@
     <Compile Include="CreateCaseFileForm.Designer.cs">
       <DependentUpon>CreateCaseFileForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FingerprintAnalyzer.cs" />
-    <Compile Include="HairAnalyzer.cs" />
     <Compile Include="InvalidFileTypeException.cs" />
     <Compile Include="MoreScanalyzersForm.cs">
       <SubType>Form</SubType>
@@ -72,16 +64,13 @@
       <DependentUpon>MoreScanalyzersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MoreScanalyzers.cs" />
-    <Compile Include="PrintAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scanlyzer.cs" />
     <Compile Include="SelectScanalyzerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SelectScanalyzerForm.Designer.cs">
       <DependentUpon>SelectScanalyzerForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="assets\findsamplegame files\FindSampleGameForm.resx" />
     <EmbeddedResource Include="CreateCaseFileForm.resx">
       <DependentUpon>CreateCaseFileForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -118,8 +107,6 @@
     <Folder Include="assets\input files\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\findsamplegame files\MagnifyingGlass.ico" />
-    <Content Include="assets\findsamplegame files\MagnifyingGlass.png" />
     <Content Include="assets\icons\casefile07-004.ico" />
     <Content Include="assets\icons\SubnauticaScanner.ico" />
     <Content Include="assets\images\bloodStain1.png" />
@@ -132,8 +119,15 @@
     <Content Include="Resources\questionmark.png" />
     <Content Include="Resources\right_arrow.png" />
     <Content Include="Resources\up_arrow.png" />
+    <Content Include="SubnauticaScanner.ico" />
     <None Include="assets\images\MagnifyingGlass.png" />
     <Content Include="assets\images\SubnauticaScanner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Scanalyzer\Scanalyzer.csproj">
+      <Project>{66e7f11e-c8f6-4d69-b3c9-12dea04eab17}</Project>
+      <Name>Scanalyzer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
