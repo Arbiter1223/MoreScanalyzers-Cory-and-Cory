@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace More_Scanalyzers___Cory_and_Cory
 {
+    //HairAnalyzer
+    //scanlyzer that looks for hair sample or S
     class HairAnalyzer : Scanlyzer
     {
         private Board game;
@@ -16,12 +18,7 @@ namespace More_Scanalyzers___Cory_and_Cory
             game = new Board(r, c, 'S');
         }
 
-        public HairAnalyzer(int r, int c, int numLocs,
-            int[][] locs, char type) : base(r, c, numLocs, locs)
-        {
-            game = new Board(r, c, type);
-        }
-
+        //processes geuss made by user
         public override bool processGeuss(int r, int c)
         {
 			if (game.changeBoard(r, c, EvidenceLocations[piecesFound][0],
@@ -33,22 +30,26 @@ namespace More_Scanalyzers___Cory_and_Cory
                 return false;
         }
 
+        //returns number of geusses made
 		public override int getGeusses()
 		{
 			return game.getGeusses();
 		}
 
-		public override string getType()
+        //returns string indicating type
+        public override string getType()
 		{
 			return "hair ";
 		}
 
-		public override char getBoardChar(int r, int c)
+        //returns specific char from board
+        public override char getBoardChar(int r, int c)
 		{
 			return game.getChar(r, c);
 		}
 
-		public override string boardToString()
+        //returns board as a string
+        public override string boardToString()
         {
             return game.GameBoardToString();
         }

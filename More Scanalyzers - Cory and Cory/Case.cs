@@ -7,7 +7,8 @@ using System.Windows.Forms;
 
 namespace More_Scanalyzers___Cory_and_Cory
 {
-
+    //Case
+    //Controls specific case and its scanlyzer
     class Case
     {
         private int caseNum;
@@ -68,6 +69,7 @@ namespace More_Scanalyzers___Cory_and_Cory
             }
         }
 
+        //processes guess made by user
         public char makeGeuss(int r, int c)
         {
             //if the found all samples show congratulations box
@@ -79,51 +81,61 @@ namespace More_Scanalyzers___Cory_and_Cory
             return scaner.getBoardChar(r, c);
         }
 
+        //returns board as a string
         public string boardToString()
         {
             return scaner.boardToString();
         }
 
+        //returns case number
         public int getCaseNum()
         {
             return caseNum;
         }
 
+        //returns number of row of the board
         public int getRows()
         {
             return rows;
         }
 
+        //returns number of columns of the board
         public int getColumns()
         {
             return cols;
         }
 
+        //returns total samples in case
         public int getSamples()
         {
             return samples;
         }
 
+        //returns samples found
         public int getSamplesFound()
         {
             return scaner.getFound();
         }
 
+        //return what type of scaner the case is
         public string getScanerType()
         {
            return scaner.getType();
         }
 
+        //returns geusses made on the case so far
         public int getGeusses()
         {
             return scaner.getGeusses();
         }
 
+        //return specific char from board
         public char getScanerBoardChar(int r, int c)
         {
             return scaner.getBoardChar(r, c);
         }
 
+        //retruns true if user is out of geusses
         public bool outOfGeusses()
         {
             return scaner.getGeusses() > 29;

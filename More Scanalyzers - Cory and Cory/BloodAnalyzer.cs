@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace More_Scanalyzers___Cory_and_Cory
 {
+    //BloodAnalyzer
+    //scanlyzer that looks for blood sample or *
     class BloodAnalyzer : Scanlyzer
     {
         private Board game;
@@ -16,6 +18,7 @@ namespace More_Scanalyzers___Cory_and_Cory
             game = new Board(r, c, '*');
         }
 
+        //processes geuss made by user
         public override bool processGeuss(int r, int c)
         {
             if (game.changeBoard(r, c, EvidenceLocations[piecesFound][0],
@@ -27,21 +30,25 @@ namespace More_Scanalyzers___Cory_and_Cory
                 return false;
         }
 
+        //returns number of geusses made
         public override int getGeusses()
         {
             return game.getGeusses();
         }
 
+        //returns string indicating type
         public override string getType()
         {
             return "blood ";
         }
 
+        //returns specific char from board
         public override char getBoardChar(int r, int c)
         {
             return game.getChar(r, c);
         }
 
+        //returns board as a string
         public override string boardToString()
         {
             return game.GameBoardToString();

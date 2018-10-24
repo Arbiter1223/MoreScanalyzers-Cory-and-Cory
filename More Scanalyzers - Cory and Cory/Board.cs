@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace More_Scanalyzers___Cory_and_Cory
 {
-    //PrintAnalyzer - Cory Press
+    //Board
     //Used in Scanlyzer classes to print out the gameboard 
     //and keep track of the players view of the board
     class Board
@@ -24,11 +24,15 @@ namespace More_Scanalyzers___Cory_and_Cory
             cols = c;
             evidenceType = type;
             geusses = 0;
+
+            // Dynamically allocate board
             GameBoard = new char[rows][];
             for (int i = 0; i < rows; i++)
             {
                 GameBoard[i] = new char[cols];
             }
+
+            // Set Board to all ~
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < cols; j++)
@@ -36,9 +40,10 @@ namespace More_Scanalyzers___Cory_and_Cory
             }
         }
 
-        //Processes gameboard after a geuss is made
+        // Processes gameboard after a geuss is made
         public bool changeBoard(int r, int c, int evidenceR, int evidenceC)
         {
+            // If user geussed right
             if (r == evidenceR && c == evidenceC)
             {
                 GameBoard[r][c] = evidenceType;
@@ -47,9 +52,9 @@ namespace More_Scanalyzers___Cory_and_Cory
             }
             else
             {
-                bool pointHoriz = true;//if both row and col are wrong
+                bool pointHoriz = true;  //if both row and col are wrong
                 if (geusses++ % 2 == 1)  //will point in direction depending
-                {                      //on number of geusses made 
+                {                        //on number of geusses made 
                     pointHoriz = false;
                 }
 
@@ -107,6 +112,7 @@ namespace More_Scanalyzers___Cory_and_Cory
             return false;
         }
 
+        //returns board as a string
         public string GameBoardToString()
         {
             string board = "";
@@ -121,11 +127,13 @@ namespace More_Scanalyzers___Cory_and_Cory
             return board;
         }
 
+        //returns number of guesses
 		public int getGeusses()
 		{
 			return geusses;
 		}
 
+        //returns specific char on the board
 		public char getChar(int r, int c){
 			return GameBoard[r][c];
 		}
